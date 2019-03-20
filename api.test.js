@@ -13,11 +13,11 @@ const decrease = () => request(app).post("/decrease");
 test("set number correctly", async () => {
   let res;
   await set(0);
-  res = get();
+  res = await get();
   console.log("[res]", res);
-  expect(res.number).toBe(0);
+  expect(res.body.number).toBe(0);
 
   await set(5);
   res = await get();
-  expect(res.number).toBe(5);
+  expect(res.body.number).toBe(5);
 });

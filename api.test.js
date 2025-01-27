@@ -1,4 +1,5 @@
 const request = require("supertest");
+const redis = require("./redis-client");
 const app = require("./api");
 
 const set = n =>
@@ -9,6 +10,11 @@ const set = n =>
 const get = () => request(app).get("/");
 const increase = () => request(app).post("/increase");
 const decrease = () => request(app).post("/decrease");
+
+afterAll(async () => {
+  // Disconnect the Redis client after all tests are done
+  await redis.quit();
+});
 
 test("set number correctly", async () => {
   let res;

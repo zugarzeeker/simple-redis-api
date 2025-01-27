@@ -1,7 +1,6 @@
 var express = require("express");
 var app = express();
-var Redis = require("ioredis");
-var redis = new Redis();
+var redis = require("./redis-client")
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
